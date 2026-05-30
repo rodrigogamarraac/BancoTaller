@@ -1,3 +1,4 @@
+import { evaluarSolicitudCredito } from "../logica/reglasBanco";
 test("aprueba el crédito cuando el puntaje es suficiente", () => {
   const resultado = evaluarSolicitudCredito({
     monto: 12000,
