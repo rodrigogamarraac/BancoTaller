@@ -1,5 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import supabase  from "../supabaseClient";
+import supabase from "../supabaseClient";
+import {
+  filtrarClientesPorBusqueda,
+  validarIdUsuario,
+} from "../logica/reglasBanco";
 
 export default function App() {
   const [userId, setUserId] = useState("");
@@ -36,30 +40,23 @@ export default function App() {
   }, []);
 
   const filteredClients = useMemo(() => {
-    const q = clientQuery.trim().toLowerCase();
-    if (!q) return clients;
-
-    return clients.filter((c) => {
-      const nameMatch = (c.name ?? "").toLowerCase().includes(q);
-      const idMatch = (c.id ?? "").toLowerCase().includes(q);
-      return nameMatch || idMatch;
-    });
+    return filtrarClientesPorBusqueda(clients, clientQuery);
   }, [clientQuery, clients]);
 
   async function openHistory() {
     setAlertMsg("");
     setHistory(null);
 
-    const trimmed = userId.trim();
-    if (!trimmed) {
-      setAlertMsg("Ingresa un ID de usuario.");
+    const validacion = validarIdUsuario(userId);
+    if (!validacion.valido) {
+      setAlertMsg(validacion.mensaje);
       return;
     }
 
     const { data, error } = await supabase
       .from("credit_histories")
       .select("credit_score")
-      .eq("client_id", trimmed)
+      .eq("client_id", validacion.id)
       .maybeSingle();
 
     if (error) {

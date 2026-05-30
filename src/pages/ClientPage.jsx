@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import supabase from "../supabaseClient";
+import { obtenerPagosPendientesOrdenados } from "../logica/reglasBanco";
 
 /**
  * ClientPage (modo demo):
@@ -69,7 +70,7 @@ export default function ClientPage() {
         setPaymentsError(error.message);
         setPendingPayments([]);
       } else {
-        setPendingPayments(data ?? []);
+        setPendingPayments(obtenerPagosPendientesOrdenados(data ?? []));
       }
 
       setPaymentsLoading(false);
