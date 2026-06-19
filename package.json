@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.97.0",

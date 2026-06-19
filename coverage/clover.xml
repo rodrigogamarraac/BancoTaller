@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1780113798721" clover="3.2.0">
-  <project timestamp="1780113798721" name="All files">
+<coverage generated="1781906046835" clover="3.2.0">
+  <project timestamp="1781906046835" name="All files">
     <metrics statements="35" coveredstatements="29" conditionals="34" coveredconditionals="20" methods="8" coveredmethods="8" elements="77" coveredelements="57" complexity="0" loc="35" ncloc="35" packages="1" files="1" classes="1"/>
-    <file name="reglasBanco.js" path="/mnt/data/banco_work/banco/src/logica/reglasBanco.js">
+    <file name="reglasBanco.js" path="C:\Users\Hp\Videos\Taller\Banco\BancoTaller\src\logica\reglasBanco.js">
       <metrics statements="35" coveredstatements="29" conditionals="34" coveredconditionals="20" methods="8" coveredmethods="8"/>
       <line num="1" count="4" type="stmt"/>
       <line num="2" count="4" type="stmt"/>

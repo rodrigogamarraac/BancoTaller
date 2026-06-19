@@ -1,5 +1,5 @@
 TN:
-SF:src/logica/reglasBanco.js
+SF:src\logica\reglasBanco.js
 FN:4,validarIdUsuario
 FN:22,filtrarClientesPorBusqueda
 FN:29,(anonymous_2)
