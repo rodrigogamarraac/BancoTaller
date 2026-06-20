@@ -35,6 +35,15 @@ export function filtrarClientesPorBusqueda(clientes = [], busqueda = "") {
   });
 }
 
+export function ordenarClientesAlfabeticamente(clientes = []) {
+  return clientes.slice().sort((a, b) => {
+    const nombreA = a.name || "";
+    const nombreB = b.name || "";
+
+    return String(nombreA).localeCompare(String(nombreB));
+  });
+}
+
 export function obtenerPagosPendientesOrdenados(pagos = []) {
   return pagos
     .filter((pago) => pago.status === "pending")
