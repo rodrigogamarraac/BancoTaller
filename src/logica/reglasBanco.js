@@ -120,12 +120,21 @@ function obtenerNombreCliente(cliente) {
   return String(cliente.name).toLowerCase();
 }
 
-export function buscarHistorialCreditoUsuario(usuarios = [], userId = "") {
-  const idBuscado = String(userId || "").trim().toLowerCase();
+function normalizarIdUsuario(valor) {
+  if (valor === null || valor === undefined) {
+    return "";
+  }
 
-  const usuario = usuarios.find(
-    (item) => String(item.id || "").trim().toLowerCase() === idBuscado
-  );
+  return String(valor).trim().toLowerCase();
+}
+
+export function buscarHistorialCreditoUsuario(usuarios = [], userId = "") {
+  const idBuscado = normalizarIdUsuario(userId);
+
+  const usuario = usuarios.find((item) => {
+    const idUsuario = normalizarIdUsuario(item.id);
+    return idUsuario === idBuscado;
+  });
 
   if (!usuario) {
     return {
@@ -139,6 +148,6 @@ export function buscarHistorialCreditoUsuario(usuarios = [], userId = "") {
     encontrado: true,
     mensaje: "",
     puntaje: usuario.puntajeCrediticio,
-    usuario,
+    usuario: usuario,
   };
 }
