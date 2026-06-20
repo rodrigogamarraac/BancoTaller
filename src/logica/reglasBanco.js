@@ -119,3 +119,26 @@ function obtenerNombreCliente(cliente) {
 
   return String(cliente.name).toLowerCase();
 }
+
+export function buscarHistorialCreditoUsuario(usuarios = [], userId = "") {
+  const idBuscado = String(userId || "").trim().toLowerCase();
+
+  const usuario = usuarios.find(
+    (item) => String(item.id || "").trim().toLowerCase() === idBuscado
+  );
+
+  if (!usuario) {
+    return {
+      encontrado: false,
+      mensaje: "Usuario no encontrado",
+      puntaje: null,
+    };
+  }
+
+  return {
+    encontrado: true,
+    mensaje: "",
+    puntaje: usuario.puntajeCrediticio,
+    usuario,
+  };
+}
