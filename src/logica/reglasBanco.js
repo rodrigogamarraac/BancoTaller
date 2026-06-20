@@ -161,12 +161,16 @@ export function obtenerClientesConMora(clientes = [], cuotas = [], fechaActual =
       cuota.due_date < fechaActual;
   });
 
+  const montoVencido = cuotasVencidas.reduce((total, cuota) => {
+    return total + cuota.amount;
+  }, 0);
+
   return [
     {
       id: cliente.id,
       name: cliente.name,
       diasAtraso: 18,
-      montoVencido: cuotasVencidas[0].amount + cuotasVencidas[1].amount,
+      montoVencido: montoVencido,
       cuotasVencidas: cuotasVencidas.length,
     },
   ];
