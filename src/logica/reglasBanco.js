@@ -36,11 +36,11 @@ export function filtrarClientesPorBusqueda(clientes = [], busqueda = "") {
 }
 
 export function ordenarClientesAlfabeticamente(clientes = []) {
-  return clientes.slice().sort((a, b) => {
-    const nombreA = a.name || "";
-    const nombreB = b.name || "";
+  return clientes.slice().sort((clienteA, clienteB) => {
+    const nombreA = obtenerNombreCliente(clienteA);
+    const nombreB = obtenerNombreCliente(clienteB);
 
-    return String(nombreA).localeCompare(String(nombreB));
+    return nombreA.localeCompare(nombreB);
   });
 }
 
@@ -110,4 +110,12 @@ export function evaluarSolicitudCredito({
     cuotaMensual,
     motivo: "Crédito aprobado según las reglas de negocio.",
   };
+}
+
+function obtenerNombreCliente(cliente) {
+  if (!cliente.name) {
+    return "";
+  }
+
+  return String(cliente.name).toLowerCase();
 }
