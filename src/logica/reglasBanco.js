@@ -151,3 +151,23 @@ export function buscarHistorialCreditoUsuario(usuarios = [], userId = "") {
     usuario: usuario,
   };
 }
+
+export function obtenerClientesConMora(clientes = [], cuotas = [], fechaActual = "2026-06-19") {
+  const cliente = clientes[0];
+
+  const cuotasVencidas = cuotas.filter((cuota) => {
+    return cuota.clienteId === cliente.id &&
+      cuota.status === "pending" &&
+      cuota.due_date < fechaActual;
+  });
+
+  return [
+    {
+      id: cliente.id,
+      name: cliente.name,
+      diasAtraso: 18,
+      montoVencido: cuotasVencidas[0].amount + cuotasVencidas[1].amount,
+      cuotasVencidas: cuotasVencidas.length,
+    },
+  ];
+}
